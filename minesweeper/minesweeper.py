@@ -44,9 +44,10 @@ class mine_Sweeper:
 
     def view_square(self, x, y):
         square = []
-        for i in range(3):
+
+        for i in range(y-1, y+2):
             temp_array = []
-            for j in range(3):
+            for j in range(x-1, x+2):
                 temp_array.append(self.map[i][j])
             square.append(temp_array)
         return square

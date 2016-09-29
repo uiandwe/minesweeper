@@ -36,8 +36,9 @@ def test_check_mine_square():
             ['O', 'O', 'O', 'O', 'X', 'X', 'O', 'O', 'O', 'O'],
             ['O', 'X', 'O', 'O', 'O', 'X', 'O', 'O', 'X', 'O']]
     m.map = map
-    print(m.view_square(1, 8))
-    count = m.check_square(1, 8)
+    assert m.view_square(8, 1) == [['O', 'O', 'X'], ['O', 'O', 'O'], ['O', 'O', 'O']]
+    m.view_map()
+    count = m.check_square(8, 1)
     assert count == 2
 
 
