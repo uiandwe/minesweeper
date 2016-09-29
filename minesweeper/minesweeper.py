@@ -1,6 +1,5 @@
-__author__ = 'uiandwe'
-
 import random
+
 
 class mine_Sweeper:
 
