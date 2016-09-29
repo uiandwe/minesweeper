@@ -5,12 +5,15 @@ class mine_Sweeper:
 
     x = 0
     y = 0
-    mine = 0
+    mine_count = 0
     map = []
+    mine = 'X'
+    empty = 'O'
 
-    def __init__(self):
-        self.x = 10
-        self.y = 10
+    def __init__(self, x=10, y=10, mine_count=10):
+        self.x = x
+        self.y = y
+        self.mine_count = mine_count
 
 
 #예외상황 넣기
@@ -18,18 +21,19 @@ class mine_Sweeper:
         for i in range(self.x):
             temp_map_array = []
             for j in range(self.y):
-                temp_map_array.append("O")
+                temp_map_array.append(self.empty)
             self.map.append(temp_map_array)
 
 #예외상황 넣기
     def create_mine(self):
-        while self.mine < 10:
+        check_mine = 0
+        while check_mine < self.mine_count:
             mine_x = random.randrange(0, self.x)
             mine_y = random.randrange(0, self.y)
 
-            if self.map[mine_x][mine_y] != 'X':
-                self.map[mine_x][mine_y] = 'X'
-                self.mine += 1
+            if self.map[mine_x][mine_y] != self.mine:
+                self.map[mine_x][mine_y] = self.mine
+                check_mine += 1
 
     def view_map(self):
         for i in range(len(self.map)):
@@ -38,7 +42,7 @@ class mine_Sweeper:
     def find_mine(self):
         for i in range(self.x):
             for j in range(self.y):
-                if self.map[i][j] != 'X':
+                if self.map[i][j] != self.mine:
                     self.map[i][j] = self.check_square(i, j)
 
     def view_square(self, x, y):
@@ -53,23 +57,23 @@ class mine_Sweeper:
 
     def check_square(self, x, y):
         is_mine = 0
-        if x-1 >= 0 and y-1 >= 0 and self.map[x-1][y-1] == 'X':
+        if x-1 >= 0 and y-1 >= 0 and self.map[x-1][y-1] == self.mine:
             is_mine += 1
-        if x >= 0 and y-1 >= 0 and self.map[x][y-1] == 'X':
+        if x >= 0 and y-1 >= 0 and self.map[x][y-1] == self.mine:
             is_mine += 1
-        if x+1 < self.x and y-1 >= 0 and self.map[x+1][y-1] == 'X':
-            is_mine += 1
-
-        if x-1 >= 0 and y < self.y and self.map[x-1][y] == 'X':
-            is_mine += 1
-        if x+1 < self.x and y < self.y and self.map[x+1][y] == 'X':
+        if x+1 < self.x and y-1 >= 0 and self.map[x+1][y-1] == self.mine:
             is_mine += 1
 
-        if x-1 >= 0 and y+1 < self.y and self.map[x-1][y+1] == 'X':
+        if x-1 >= 0 and y < self.y and self.map[x-1][y] == self.mine:
             is_mine += 1
-        if x < self.x and y+1 < self.y and self.map[x][y+1] == 'X':
+        if x+1 < self.x and y < self.y and self.map[x+1][y] == self.mine:
             is_mine += 1
-        if x+1 < self.x and y+1 < self.y and self.map[x+1][y+1] == 'X':
+
+        if x-1 >= 0 and y+1 < self.y and self.map[x-1][y+1] == self.mine:
+            is_mine += 1
+        if x < self.x and y+1 < self.y and self.map[x][y+1] == self.mine:
+            is_mine += 1
+        if x+1 < self.x and y+1 < self.y and self.map[x+1][y+1] == self.mine:
             is_mine += 1
 
         return is_mine

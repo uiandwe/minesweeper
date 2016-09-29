@@ -3,7 +3,7 @@ __author__ = 'uiandwe'
 import pytest
 xfail = pytest.mark.xfail
 
-from minesweeper.minesweeper import mine_Sweeper
+from ..minesweeper.minesweeper import mine_Sweeper
 
 m = mine_Sweeper()
 
@@ -45,5 +45,3 @@ def test_check_mine_square():
 @xfail
 def test_bubble_fail():
     temp_list = [9, 2, 6, 1, 8, 10, 4, 5, 3, 7]
-    # s = sorting.sorting.sorting()
-    # assert s.bubble(temp_list) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
