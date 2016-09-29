@@ -12,7 +12,7 @@ class mine_Sweeper:
     def __init__(self):
         self.x = 10
         self.y = 10
-        self.mine = 10
+
 
 #예외상황 넣기
     def create_map(self):
@@ -24,12 +24,13 @@ class mine_Sweeper:
 
 #예외상황 넣기
     def create_mine(self):
-        for i in range(self.mine):
-
+        while self.mine < 10:
             mine_x = random.randrange(0, self.x)
             mine_y = random.randrange(0, self.y)
-            print(i, mine_x, mine_y)
-            self.map[mine_x][mine_y] = 'X'
+
+            if self.map[mine_x][mine_y] != 'X':
+                self.map[mine_x][mine_y] = 'X'
+                self.mine += 1
 
     def view_map(self):
         for i in range(len(self.map)):

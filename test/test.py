@@ -17,7 +17,6 @@ def test_check_create_map():
 def test_check_mine_count():
     m.create_mine()
     count = 0
-    m.view_map()
     for i in range(m.x):
         for j in range(m.y):
             if m.map[i][j] == "X":
@@ -25,22 +24,21 @@ def test_check_mine_count():
     assert count == 10
 
 
-# def test_check_mine_square():
-#     map =[['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X'],
-#             ['O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'X', 'X', 'O', 'O', 'O', 'O'],
-#             ['O', 'X', 'O', 'O', 'O', 'X', 'O', 'O', 'X', 'O']]
-#     m.map = map
-#     # m.view_map()
-#     m.view_square(1, 8)
-    # count = m.check_square(1, 8)
-    # assert count == 2
+def test_check_mine_square():
+    map = [['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X'],
+            ['O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'X', 'X', 'O', 'O', 'O', 'O'],
+            ['O', 'X', 'O', 'O', 'O', 'X', 'O', 'O', 'X', 'O']]
+    m.map = map
+    print(m.view_square(1, 8))
+    count = m.check_square(1, 8)
+    assert count == 2
 
 
 @xfail
