@@ -17,6 +17,9 @@ class sweeper:
         if self.mine.x <= 0 or self.mine.y <= 0:
             sys.exit(" mine map size size should be greater than zero. ")
 
+    '''
+    입력된 x,y 만큼의 map 생성
+    '''
     def create_map(self):
         self.exception_check_mine_obj()
 
@@ -26,6 +29,9 @@ class sweeper:
                 temp_map_array.append(self.mine.empty)
             self.mine.map.append(temp_map_array)
 
+    '''
+    map 에 줌 랜덤 좌표로 mine 을 넣어줌
+    '''
     def create_mine(self):
 
         self.exception_check_mine_obj()
@@ -41,9 +47,12 @@ class sweeper:
                 check_mine += 1
 
     def view_map(self):
-        for i in range(len(self.mine.map)):
-            print(self.mine.map[i])
+        for i in range(1, self.mine.x+1):
+            print(self.mine.map[i][1:self.mine.y+1])
 
+    '''
+    mine 찾기 위한 map 순회
+    '''
     def find_mine(self):
         for i in range(1, self.mine.x+1):
             for j in range(1, self.mine.y+1):

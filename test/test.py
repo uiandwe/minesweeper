@@ -37,7 +37,6 @@ def test_check_mine_square():
            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']]
 
     test_mine.mine.map = map
-    print(test_mine.view_square(2, 3))
     assert test_mine.view_square(2, 3) == [['O', 'X', 'O'], ['O', 'O', 'O'], ['O', 'X', 'O']]
 
     count = test_mine.check_square(2, 3)
