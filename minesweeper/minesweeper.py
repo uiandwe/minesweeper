@@ -48,9 +48,9 @@ class mine_Sweeper:
     def view_square(self, x, y):
         square = []
 
-        for i in range(y-1, y+2):
+        for i in range(x-1, x+2):
             temp_array = []
-            for j in range(x-1, x+2):
+            for j in range(y-1, y+2):
                 temp_array.append(self.map[i][j])
             square.append(temp_array)
         return square
@@ -58,24 +58,14 @@ class mine_Sweeper:
 #간소화 시키기
     def check_square(self, x, y):
         is_mine = 0
-        if self.map[x-1][y-1] == self.mine:
-            is_mine += 1
-        if self.map[x][y-1] == self.mine:
-            is_mine += 1
-        if self.map[x+1][y-1] == self.mine:
-            is_mine += 1
 
-        if self.map[x-1][y] == self.mine:
-            is_mine += 1
-        if self.map[x+1][y] == self.mine:
-            is_mine += 1
-
-        if self.map[x-1][y+1] == self.mine:
-            is_mine += 1
-        if self.map[x][y+1] == self.mine:
-            is_mine += 1
-        if self.map[x+1][y+1] == self.mine:
-            is_mine += 1
+        for i in range(x-1, x+2):
+            for j in range(y-1, y+2):
+                if i == x and j == y:
+                    pass
+                else:
+                    if self.map[i][j] == self.mine:
+                        is_mine += 1
 
         return is_mine
 
@@ -84,6 +74,6 @@ if __name__ == '__main__':
     m = mine_Sweeper()
     m.create_map()
     m.create_mine()
-    # m.view_map()
+    m.view_map()
     m.find_mine()
     m.view_map()

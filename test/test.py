@@ -17,29 +17,33 @@ def test_check_create_map():
 def test_check_mine_count():
     m.create_mine()
     count = 0
-    for i in range(m.x):
-        for j in range(m.y):
+    for i in range(m.x+2):
+        for j in range(m.y+2):
             if m.map[i][j] == "X":
                 count += 1
     assert count == 10
-#
-#
-# def test_check_mine_square():
-#     map = [['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X'],
-#             ['O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X'],
-#             ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
-#             ['O', 'O', 'O', 'O', 'X', 'X', 'O', 'O', 'O', 'O'],
-#             ['O', 'X', 'O', 'O', 'O', 'X', 'O', 'O', 'X', 'O']]
-#     m.map = map
-#     assert m.view_square(8, 1) == [['O', 'O', 'X'], ['O', 'O', 'O'], ['O', 'O', 'O']]
-#     m.view_map()
-#     count = m.check_square(8, 1)
-#     assert count == 2
+
+
+def test_check_mine_square():
+    map = [['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X', 'O'],
+            ['O', 'O', 'O', 'X', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'X', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']]
+
+    m.map = map
+    print(m.view_square(2, 3))
+    assert m.view_square(2, 3) == [['O', 'X', 'O'], ['O', 'O', 'O'], ['O', 'X', 'O']]
+
+    count = m.check_square(2, 3)
+    assert count == 2
 
 
 @xfail
