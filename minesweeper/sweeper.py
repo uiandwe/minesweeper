@@ -1,0 +1,89 @@
+import random, sys
+from .mine import mine as m
+
+
+class sweeper:
+
+    mine = None
+
+    def __init__(self):
+        self.mine = m()
+
+    def exception_check_mine_obj(self):
+        if self.mine is None:
+            sys.exit(" sweeper init error. ")
+
+    def exception_check_mine_size(self):
+        if self.mine.x <= 0 or self.mine.y <= 0:
+            sys.exit(" mine map size size should be greater than zero. ")
+
+    def create_map(self):
+        self.exception_check_mine_obj()
+
+        for i in range(self.mine.x+2):
+            temp_map_array = []
+            for j in range(self.mine.y+2):
+                temp_map_array.append(self.mine.empty)
+            self.mine.map.append(temp_map_array)
+
+    def create_mine(self):
+
+        self.exception_check_mine_obj()
+        self.exception_check_mine_size()
+
+        check_mine = 0
+        while check_mine < self.mine.mine_count:
+            mine_x = random.randrange(1, self.mine.x+1)
+            mine_y = random.randrange(1, self.mine.y+1)
+
+            if self.mine.map[mine_x][mine_y] != self.mine.mine:
+                self.mine.map[mine_x][mine_y] = self.mine.mine
+                check_mine += 1
+
+    def view_map(self):
+        for i in range(len(self.mine.map)):
+            print(self.mine.map[i])
+
+    def find_mine(self):
+        for i in range(1, self.mine.x+1):
+            for j in range(1, self.mine.y+1):
+                if self.mine.map[i][j] != self.mine.mine:
+                    self.mine.map[i][j] = self.check_square(i, j)
+
+    def view_square(self, x, y):
+        square = []
+
+        for i in range(x-1, x+2):
+            temp_array = []
+            for j in range(y-1, y+2):
+                temp_array.append(self.mine.map[i][j])
+            square.append(temp_array)
+        return square
+
+    '''
+    해당 좌표의 3*3 배열을 검토하여 mine count 반환
+
+    :param  int x int y
+    :return int
+    '''
+    def check_square(self, x, y):
+        is_mine = 0
+
+        for i in range(x-1, x+2):
+            for j in range(y-1, y+2):
+                if i == x and j == y:
+                    pass
+                else:
+                    if self.mine.map[i][j] == self.mine.mine:
+                        is_mine += 1
+
+        return is_mine
+
+if __name__ == '__main__':
+
+    mine_sweeper = sweeper()
+    mine_sweeper.create_map()
+    mine_sweeper.create_mine()
+    mine_sweeper.view_map()
+    mine_sweeper.find_mine()
+    mine_sweeper.view_map()
