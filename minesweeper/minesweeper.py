@@ -18,9 +18,9 @@ class mine_Sweeper:
 
 #예외상황 넣기
     def create_map(self):
-        for i in range(self.x):
+        for i in range(self.x+2):
             temp_map_array = []
-            for j in range(self.y):
+            for j in range(self.y+2):
                 temp_map_array.append(self.empty)
             self.map.append(temp_map_array)
 
@@ -28,8 +28,8 @@ class mine_Sweeper:
     def create_mine(self):
         check_mine = 0
         while check_mine < self.mine_count:
-            mine_x = random.randrange(0, self.x)
-            mine_y = random.randrange(0, self.y)
+            mine_x = random.randrange(1, self.x+1)
+            mine_y = random.randrange(1, self.y+1)
 
             if self.map[mine_x][mine_y] != self.mine:
                 self.map[mine_x][mine_y] = self.mine
@@ -40,8 +40,8 @@ class mine_Sweeper:
             print(self.map[i])
 
     def find_mine(self):
-        for i in range(self.x):
-            for j in range(self.y):
+        for i in range(1, self.x+1):
+            for j in range(1, self.y+1):
                 if self.map[i][j] != self.mine:
                     self.map[i][j] = self.check_square(i, j)
 
@@ -55,25 +55,26 @@ class mine_Sweeper:
             square.append(temp_array)
         return square
 
+#간소화 시키기
     def check_square(self, x, y):
         is_mine = 0
-        if x-1 >= 0 and y-1 >= 0 and self.map[x-1][y-1] == self.mine:
+        if self.map[x-1][y-1] == self.mine:
             is_mine += 1
-        if x >= 0 and y-1 >= 0 and self.map[x][y-1] == self.mine:
+        if self.map[x][y-1] == self.mine:
             is_mine += 1
-        if x+1 < self.x and y-1 >= 0 and self.map[x+1][y-1] == self.mine:
-            is_mine += 1
-
-        if x-1 >= 0 and y < self.y and self.map[x-1][y] == self.mine:
-            is_mine += 1
-        if x+1 < self.x and y < self.y and self.map[x+1][y] == self.mine:
+        if self.map[x+1][y-1] == self.mine:
             is_mine += 1
 
-        if x-1 >= 0 and y+1 < self.y and self.map[x-1][y+1] == self.mine:
+        if self.map[x-1][y] == self.mine:
             is_mine += 1
-        if x < self.x and y+1 < self.y and self.map[x][y+1] == self.mine:
+        if self.map[x+1][y] == self.mine:
             is_mine += 1
-        if x+1 < self.x and y+1 < self.y and self.map[x+1][y+1] == self.mine:
+
+        if self.map[x-1][y+1] == self.mine:
+            is_mine += 1
+        if self.map[x][y+1] == self.mine:
+            is_mine += 1
+        if self.map[x+1][y+1] == self.mine:
             is_mine += 1
 
         return is_mine
@@ -83,6 +84,6 @@ if __name__ == '__main__':
     m = mine_Sweeper()
     m.create_map()
     m.create_mine()
-    m.view_map()
+    # m.view_map()
     m.find_mine()
     m.view_map()
