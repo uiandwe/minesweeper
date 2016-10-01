@@ -79,11 +79,8 @@ class sweeper:
 
         for i in range(x-1, x+2):
             for j in range(y-1, y+2):
-                if i == x and j == y:
-                    pass
-                else:
-                    if type(self.mine.map[i][j]) is int:
-                        self.mine.map[i][j] += 1
+                if type(self.mine.map[i][j]) is int:
+                    self.mine.map[i][j] += 1
 
         return is_mine
 
