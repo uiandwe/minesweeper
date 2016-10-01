@@ -5,6 +5,7 @@ from .mine import mine as m
 class sweeper:
 
     mine = None
+    visit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     def __init__(self):
         self.mine = m()
@@ -50,8 +51,22 @@ class sweeper:
         for i in range(1, self.mine.x+1):
             print(self.mine.map[i][1:self.mine.y+1])
 
+    def recursive_find_mine(self, x=1, y=1):
+
+        if self.mine.map[x][y] == self.mine.mine:
+            self.check_square(x, y)
+
+        if y >= 10:
+            self.recucive_find_mine(x+1, 1)
+        elif x >= 10:
+            return
+        else:
+            self.recucive_find_mine(x, y+1)
+
+
     '''
     mine 찾기 위한 map 순회
+    mine을 찾을시 check_square() 호출
     '''
     def find_mine(self):
         for i in range(1, self.mine.x+1):
@@ -84,11 +99,3 @@ class sweeper:
 
         return is_mine
 
-if __name__ == '__main__':
-
-    mine_sweeper = sweeper()
-    mine_sweeper.create_map()
-    mine_sweeper.create_mine()
-    mine_sweeper.view_map()
-    mine_sweeper.find_mine()
-    mine_sweeper.view_map()
