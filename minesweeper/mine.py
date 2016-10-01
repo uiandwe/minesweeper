@@ -7,7 +7,7 @@ class mine:
     mine_count = 0
     map = []
     mine = 'X'
-    empty = 'O'
+    empty = 0
 
     def __init__(self, x=10, y=10, mine_count=10):
         self.x = x

@@ -56,8 +56,8 @@ class sweeper:
     def find_mine(self):
         for i in range(1, self.mine.x+1):
             for j in range(1, self.mine.y+1):
-                if self.mine.map[i][j] != self.mine.mine:
-                    self.mine.map[i][j] = self.check_square(i, j)
+                if self.mine.map[i][j] == self.mine.mine:
+                    self.check_square(i, j)
 
     def view_square(self, x, y):
         square = []
@@ -70,10 +70,9 @@ class sweeper:
         return square
 
     '''
-    해당 좌표의 3*3 배열을 검토하여 mine count 반환
+    해당 좌표(mine)를 중심으로 +1식 증가
 
     :param  int x int y
-    :return int
     '''
     def check_square(self, x, y):
         is_mine = 0
@@ -83,8 +82,8 @@ class sweeper:
                 if i == x and j == y:
                     pass
                 else:
-                    if self.mine.map[i][j] == self.mine.mine:
-                        is_mine += 1
+                    if type(self.mine.map[i][j]) is int:
+                        self.mine.map[i][j] += 1
 
         return is_mine
 
